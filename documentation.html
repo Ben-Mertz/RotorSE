@@ -1,35 +1,25 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>4. Documentation &mdash; RotorSE 0.1.0 documentation</title>
-    
+    <title>4. Documentation &#8212; RotorSE 0.1.0 documentation</title>
     <link rel="stylesheet" href="_static/nrel.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="RotorSE 0.1.0 documentation" href="index.html" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="5. Theory" href="theory.html" />
     <link rel="prev" title="3. Tutorial" href="tutorial.html" /> 
-  </head>
-  <body>
-    <div class="related">
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -41,268 +31,263 @@
         <li class="right" >
           <a href="tutorial.html" title="3. Tutorial"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RotorSE 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RotorSE 0.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="documentation">
 <span id="documentation-label"></span><h1>4. Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
 <p>The following inputs and outputs are defined for RotorSE:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">RotorSE</span><span class="p">(</span><span class="n">Assembly</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;rotor model&quot;&quot;&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+        <span class="n">NPTS</span> <span class="o">=</span> <span class="n">RefBlade</span><span class="o">.</span><span class="n">npts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Analysis_Level</span> <span class="o">=</span> <span class="n">Analysis_Level</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FASTpref</span><span class="o">=</span> <span class="n">FASTpref</span>
 
-    <span class="c"># --- geometry inputs ---</span>
-    <span class="n">initial_aero_grid</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;initial aerodynamic grid on unit radius&#39;</span><span class="p">)</span>
-    <span class="n">initial_str_grid</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;initial structural grid on unit radius&#39;</span><span class="p">)</span>
-    <span class="n">idx_cylinder_aero</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;first idx in r_aero_unit of non-cylindrical section, constant twist inboard of here&#39;</span><span class="p">)</span>
-    <span class="n">idx_cylinder_str</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;first idx in r_str_unit of non-cylindrical section&#39;</span><span class="p">)</span>
-    <span class="n">hubFraction</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;hub location as fraction of radius&#39;</span><span class="p">)</span>
-    <span class="n">r_aero</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;new aerodynamic grid on unit radius&#39;</span><span class="p">)</span>
-    <span class="n">r_max_chord</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;location of max chord on unit radius&#39;</span><span class="p">)</span>
-    <span class="n">chord_sub</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;chord at control points. defined at hub, then at linearly spaced locations from r_max_chord to tip&#39;</span><span class="p">)</span>
-    <span class="n">theta_sub</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;deg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;twist at control points.  defined at linearly spaced locations from r[idx_cylinder] to tip&#39;</span><span class="p">)</span>
-    <span class="n">precurve_sub</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;precurve at control points.  defined at same locations at chord, starting at 2nd control point (root must be zero precurve)&#39;</span><span class="p">)</span>
-    <span class="n">delta_precurve_sub</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;adjustment to precurve to account for curvature from loading&#39;</span><span class="p">)</span>
-    <span class="n">bladeLength</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;blade length (if not precurved or swept) otherwise length of blade before curvature&#39;</span><span class="p">)</span>
-    <span class="n">delta_bladeLength</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;adjustment to blade length to account for curvature from loading&#39;</span><span class="p">)</span>
-    <span class="n">precone</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;precone angle&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;deg&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">tilt</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;shaft tilt&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;deg&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">yaw</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;yaw error&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;deg&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">nBlades</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;number of blades&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">airfoil_files</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Str</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;names of airfoil file&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;fst_vt_in&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;fst_vt_in&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="p">{},</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;turbulence_class&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;turbulence_class&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">TURBULENCE_CLASS</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;IEC turbulence class class&#39;</span><span class="p">,</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;gust_stddev&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;gust_stddev&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="c1">#self.add(&#39;cdf_reference_height_wind_speed&#39;, IndepVarComp(&#39;cdf_reference_height_wind_speed&#39;, val=0.0, units=&#39;m&#39;, desc=&#39;reference hub height for IEC wind speed (used in CDF calculation)&#39;), promotes=[&#39;*&#39;])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;VfactorPC&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;VfactorPC&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;fraction of rated speed at which the deflection is assumed to representative throughout the power curve calculation&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;rho&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;rho&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">1.225</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">1.81e-5</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
 
-    <span class="c"># --- atmosphere inputs ---</span>
-    <span class="n">rho</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.225</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;kg/m**3&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;density of air&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.81206e-5</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;kg/m/s&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;dynamic viscosity of air&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">shearExp</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;shear exponent&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">hubHt</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;hub height&#39;</span><span class="p">)</span>
-    <span class="n">turbine_class</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;II&#39;</span><span class="p">,</span> <span class="s">&#39;III&#39;</span><span class="p">),</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;IEC turbine class&#39;</span><span class="p">)</span>
-    <span class="n">turbulence_class</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">),</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;IEC turbulence class class&#39;</span><span class="p">)</span>
-    <span class="n">g</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m/s**2&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;acceleration of gravity&#39;</span><span class="p">,</span> <span class="n">deriv_ignore</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">cdf_reference_height_wind_speed</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;reference hub height for IEC wind speed (used in CDF calculation)&#39;</span><span class="p">)</span>
-    <span class="c"># cdf_reference_mean_wind_speed = Float(iotype=&#39;in&#39;)</span>
-    <span class="c"># weibull_shape = Float(iotype=&#39;in&#39;)</span>
+        <span class="c1"># --- control ---</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c_Vin&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;control_Vin&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;cut-in wind speed&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c_Vout&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;control_Vout&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;cut-out wind speed&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;machine_rating&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;machine_rating&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="n">units</span><span class="o">=</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;rated power&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c_minOmega&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;control_minOmega&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;rpm&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;minimum allowed rotor rotation speed&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c_maxOmega&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;control_maxOmega&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;rpm&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;maximum allowed rotor rotation speed&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c_tsr&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;control_tsr&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;tip-speed ratio in Region 2 (should be optimized externally)&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c_pitch&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;control_pitch&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;pitch angle in region 2 (and region 3 for fixed pitch machines)&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;c_maxTS&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;control_maxTS&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;max blade tip speed&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;pitch_extreme&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;pitch_extreme&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;worst-case pitch at survival wind condition&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;azimuth_extreme&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;azimuth_extreme&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;worst-case azimuth at survival wind condition&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
 
-    <span class="n">VfactorPC</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;fraction of rated speed at which the deflection is assumed to representative throughout the power curve calculation&#39;</span><span class="p">)</span>
+        <span class="c1"># --- drivetrain efficiency ---</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;drivetrainType&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;drivetrainType&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">DRIVETRAIN_TYPE</span><span class="p">[</span><span class="s1">&#39;GEARED&#39;</span><span class="p">],</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;drivetrainEff&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;drivetrainEff&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;overwrite drivetrain model with a given efficiency, used for FAST analysis&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
 
 
-    <span class="c"># --- composite sections ---</span>
-    <span class="n">sparT</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;spar cap thickness parameters&#39;</span><span class="p">)</span>
-    <span class="n">teT</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;trailing-edge thickness parameters&#39;</span><span class="p">)</span>
-    <span class="n">chord_str_ref</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;chord distribution for reference section, thickness of structural layup scaled with reference thickness (fixed t/c for this case)&#39;</span><span class="p">)</span>
-    <span class="n">leLoc</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;array of leading-edge positions from a reference blade axis </span><span class="se">\</span>
-<span class="s">        (usually blade pitch axis). locations are normalized by the local chord length.  </span><span class="se">\</span>
-<span class="s">        e.g. leLoc[i] = 0.2 means leading edge is 0.2*chord[i] from reference axis.   </span><span class="se">\</span>
-<span class="s">        positive in -x direction for airfoil-aligned coordinate system&#39;</span><span class="p">)</span>
-    <span class="n">profile</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Profile</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;airfoil shape at each radial position&#39;</span><span class="p">)</span>
-    <span class="n">materials</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Orthotropic2DMaterial</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span>
-        <span class="n">desc</span><span class="o">=</span><span class="s">&#39;list of all Orthotropic2DMaterial objects used in defining the geometry&#39;</span><span class="p">)</span>
-    <span class="n">upperCS</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">CompositeSection</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span>
-        <span class="n">desc</span><span class="o">=</span><span class="s">&#39;list of CompositeSection objections defining the properties for upper surface&#39;</span><span class="p">)</span>
-    <span class="n">lowerCS</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">CompositeSection</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span>
-        <span class="n">desc</span><span class="o">=</span><span class="s">&#39;list of CompositeSection objections defining the properties for lower surface&#39;</span><span class="p">)</span>
-    <span class="n">websCS</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">CompositeSection</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span>
-        <span class="n">desc</span><span class="o">=</span><span class="s">&#39;list of CompositeSection objections defining the properties for shear webs&#39;</span><span class="p">)</span>
-    <span class="n">sector_idx_strain_spar</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;index of sector for spar (PreComp definition of sector)&#39;</span><span class="p">)</span>
-    <span class="n">sector_idx_strain_te</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;index of sector for trailing-edge (PreComp definition of sector)&#39;</span><span class="p">)</span>
+        <span class="c1"># --- fatigue ---</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;rstar_damage&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;rstar_damage&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NPTS</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;nondimensional radial locations of damage equivalent moments&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Mxb_damage&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;Mxb_damage&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NPTS</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;N*m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;damage equivalent moments about blade c.s. x-direction&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Myb_damage&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;Myb_damage&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">NPTS</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;N*m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;damage equivalent moments about blade c.s. y-direction&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;strain_ult_spar&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;strain_ult_spar&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;ultimate strain in spar cap&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;strain_ult_te&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;strain_ult_te&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">2500</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;uptimate strain in trailing-edge panels&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;m_damage&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;m_damage&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;slope of S-N curve for fatigue analysis&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="c1">#self.add(&#39;lifetime&#39;, IndepVarComp(&#39;lifetime&#39;, val=20.0, units=&#39;year&#39;, desc=&#39;project lifetime for fatigue analysis&#39;), promotes=[&#39;*&#39;])</span>
 
 
-    <span class="c"># --- control ---</span>
-    <span class="n">control</span> <span class="o">=</span> <span class="n">VarTree</span><span class="p">(</span><span class="n">VarSpeedMachine</span><span class="p">(),</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;control parameters&#39;</span><span class="p">)</span>
-    <span class="n">pitch_extreme</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;deg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;worst-case pitch at survival wind condition&#39;</span><span class="p">)</span>
-    <span class="n">azimuth_extreme</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;deg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;worst-case azimuth at survival wind condition&#39;</span><span class="p">)</span>
-
-    <span class="c"># --- drivetrain efficiency ---</span>
-    <span class="n">drivetrainType</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="s">&#39;geared&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;geared&#39;</span><span class="p">,</span> <span class="s">&#39;single_stage&#39;</span><span class="p">,</span> <span class="s">&#39;multi_drive&#39;</span><span class="p">,</span> <span class="s">&#39;pm_direct_drive&#39;</span><span class="p">),</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">)</span>
-
-    <span class="c"># --- fatigue ---</span>
-    <span class="n">rstar_damage</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;nondimensional radial locations of damage equivalent moments&#39;</span><span class="p">)</span>
-    <span class="n">Mxb_damage</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;N*m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;damage equivalent moments about blade c.s. x-direction&#39;</span><span class="p">)</span>
-    <span class="n">Myb_damage</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;N*m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;damage equivalent moments about blade c.s. y-direction&#39;</span><span class="p">)</span>
-    <span class="n">strain_ult_spar</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;ultimate strain in spar cap&#39;</span><span class="p">)</span>
-    <span class="n">strain_ult_te</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">2500</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;uptimate strain in trailing-edge panels&#39;</span><span class="p">)</span>
-    <span class="n">eta_damage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.755</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;safety factor for fatigue&#39;</span><span class="p">)</span>
-    <span class="n">m_damage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;slope of S-N curve for fatigue analysis&#39;</span><span class="p">)</span>
-    <span class="n">N_damage</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mi">365</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">3600</span><span class="o">*</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;number of cycles used in fatigue analysis&#39;</span><span class="p">)</span>
-
-    <span class="c"># --- options ---</span>
-    <span class="n">nSector</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;number of sectors to divide rotor face into in computing thrust and power&#39;</span><span class="p">)</span>
-    <span class="n">npts_coarse_power_curve</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;number of points to evaluate aero analysis at&#39;</span><span class="p">)</span>
-    <span class="n">npts_spline_power_curve</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;number of points to use in fitting spline to power curve&#39;</span><span class="p">)</span>
-    <span class="n">AEP_loss_factor</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;availability and other losses (soiling, array, etc.)&#39;</span><span class="p">)</span>
-    <span class="n">dynamic_amplication_tip_deflection</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;a dynamic amplification factor to adjust the static deflection calculation&#39;</span><span class="p">)</span>
-    <span class="n">nF</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;number of natural frequencies to compute&#39;</span><span class="p">)</span>
-
-    <span class="c"># --- outputs ---</span>
-    <span class="n">AEP</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;kW*h&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;annual energy production&#39;</span><span class="p">)</span>
-    <span class="n">V</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;wind speeds (power curve)&#39;</span><span class="p">)</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;power (power curve)&#39;</span><span class="p">)</span>
-    <span class="n">Omega</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;rpm&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;speed (power curve)&#39;</span><span class="p">)</span>
-    <span class="n">ratedConditions</span> <span class="o">=</span> <span class="n">VarTree</span><span class="p">(</span><span class="n">RatedConditions</span><span class="p">(),</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;conditions at rated speed&#39;</span><span class="p">)</span>
-    <span class="n">hub_diameter</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;hub diameter&#39;</span><span class="p">)</span>
-    <span class="n">diameter</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;rotor diameter&#39;</span><span class="p">)</span>
-    <span class="n">V_extreme</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m/s&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;survival wind speed&#39;</span><span class="p">)</span>
-    <span class="n">T_extreme</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;thrust at survival wind condition&#39;</span><span class="p">)</span>
-    <span class="n">Q_extreme</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;N*m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;thrust at survival wind condition&#39;</span><span class="p">)</span>
-
-    <span class="c"># structural outputs</span>
-    <span class="n">mass_one_blade</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;kg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;mass of one blade&#39;</span><span class="p">)</span>
-    <span class="n">mass_all_blades</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;kg&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;mass of all blade&#39;</span><span class="p">)</span>
-    <span class="n">I_all_blades</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;out of plane moments of inertia in yaw-aligned c.s.&#39;</span><span class="p">)</span>
-    <span class="n">freq</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;Hz&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;1st nF natural frequencies&#39;</span><span class="p">)</span>
-    <span class="n">freq_curvefem</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;Hz&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;1st nF natural frequencies&#39;</span><span class="p">)</span>
-    <span class="n">tip_deflection</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;blade tip deflection in +x_y direction&#39;</span><span class="p">)</span>
-    <span class="n">strainU_spar</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;axial strain and specified locations&#39;</span><span class="p">)</span>
-    <span class="n">strainL_spar</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;axial strain and specified locations&#39;</span><span class="p">)</span>
-    <span class="n">strainU_te</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;axial strain and specified locations&#39;</span><span class="p">)</span>
-    <span class="n">strainL_te</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;axial strain and specified locations&#39;</span><span class="p">)</span>
-    <span class="n">eps_crit_spar</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;critical strain in spar from panel buckling calculation&#39;</span><span class="p">)</span>
-    <span class="n">eps_crit_te</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;critical strain in trailing-edge panels from panel buckling calculation&#39;</span><span class="p">)</span>
-    <span class="n">root_bending_moment</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;N*m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;total magnitude of bending moment at root of blade&#39;</span><span class="p">)</span>
-    <span class="n">damageU_spar</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;fatigue damage on upper surface in spar cap&#39;</span><span class="p">)</span>
-    <span class="n">damageL_spar</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;fatigue damage on lower surface in spar cap&#39;</span><span class="p">)</span>
-    <span class="n">damageU_te</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;fatigue damage on upper surface in trailing-edge panels&#39;</span><span class="p">)</span>
-    <span class="n">damageL_te</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;fatigue damage on lower surface in trailing-edge panels&#39;</span><span class="p">)</span>
-    <span class="n">delta_bladeLength_out</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;adjustment to blade length to account for curvature from loading&#39;</span><span class="p">)</span>
-    <span class="n">delta_precurve_sub_out</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;adjustment to precurve to account for curvature from loading&#39;</span><span class="p">)</span>
-
-    <span class="c"># internal use outputs</span>
-    <span class="n">Rtip</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;tip location in z_b&#39;</span><span class="p">)</span>
-    <span class="n">precurveTip</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;tip location in x_b&#39;</span><span class="p">)</span>
-    <span class="n">presweepTip</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s">&#39;out&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s">&#39;tip location in y_b&#39;</span><span class="p">)</span>  <span class="c"># TODO: connect later</span>
+        <span class="c1"># --- options ---</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;nSector&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;nSector&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">iotype</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;number of sectors to divide rotor face into in computing thrust and power&#39;</span><span class="p">,</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;tiploss&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;tiploss&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;hubloss&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;hubloss&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;wakerotation&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;wakerotation&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;usecd&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;usecd&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="n">pass_by_obj</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;AEP_loss_factor&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;AEP_loss_factor&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;availability and other losses (soiling, array, etc.)&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;dynamic_amplication_tip_deflection&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;dynamic_amplication_tip_deflection&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;a dynamic amplification factor to adjust the static deflection calculation&#39;</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;shape_parameter&#39;</span><span class="p">,</span> <span class="n">IndepVarComp</span><span class="p">(</span><span class="s1">&#39;shape_parameter&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span> <span class="n">promotes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+        
 </pre></div>
 </div>
-<div class="section" id="module-rotorse.rotoraero">
-<span id="referenced-rotoraero-modules"></span><h2>4.1. Referenced RotorAero Modules<a class="headerlink" href="#module-rotorse.rotoraero" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-rotorse.rotor_geometry">
+<span id="referenced-rotor-geometry-modules"></span><h2>4.1. Referenced Rotor Geometry Modules<a class="headerlink" href="#module-rotorse.rotor_geometry" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="rotorse.rotoraero.VarSpeedMachine">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">VarSpeedMachine</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#VarSpeedMachine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.VarSpeedMachine" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_geometry.ReferenceBlade">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_geometry.</code><code class="descname">ReferenceBlade</code><a class="headerlink" href="#rotorse.rotor_geometry.ReferenceBlade" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraero.FixedSpeedMachine">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">FixedSpeedMachine</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#FixedSpeedMachine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.FixedSpeedMachine" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_geometry.NREL5MW">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_geometry.</code><code class="descname">NREL5MW</code><a class="headerlink" href="#rotorse.rotor_geometry.NREL5MW" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraero.RatedConditions">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">RatedConditions</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#RatedConditions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.RatedConditions" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_geometry.DTU10MW">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_geometry.</code><code class="descname">DTU10MW</code><a class="headerlink" href="#rotorse.rotor_geometry.DTU10MW" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraero.AeroLoads">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">AeroLoads</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#AeroLoads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.AeroLoads" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_geometry.BladeGeometry">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_geometry.</code><code class="descname">BladeGeometry</code><a class="headerlink" href="#rotorse.rotor_geometry.BladeGeometry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraero.GeomtrySetupBase">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">GeomtrySetupBase</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#GeomtrySetupBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.GeomtrySetupBase" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_geometry.Location">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_geometry.</code><code class="descname">Location</code><a class="headerlink" href="#rotorse.rotor_geometry.Location" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraero.AeroBase">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">AeroBase</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#AeroBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.AeroBase" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_geometry.TurbineClass">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_geometry.</code><code class="descname">TurbineClass</code><a class="headerlink" href="#rotorse.rotor_geometry.TurbineClass" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraero.DrivetrainLossesBase">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">DrivetrainLossesBase</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#DrivetrainLossesBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.DrivetrainLossesBase" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="rotorse.rotoraero.PDFBase">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">PDFBase</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#PDFBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.PDFBase" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="rotorse.rotoraero.CDFBase">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraero.</tt><tt class="descname">CDFBase</tt><a class="reference internal" href="_modules/rotorse/rotoraero.html#CDFBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraero.CDFBase" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_geometry.RotorGeometry">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_geometry.</code><code class="descname">RotorGeometry</code><a class="headerlink" href="#rotorse.rotor_geometry.RotorGeometry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="module-rotorse.rotoraerodefaults">
-<span id="referenced-rotoraerodefaults-modules"></span><h2>4.2. Referenced RotorAeroDefaults Modules<a class="headerlink" href="#module-rotorse.rotoraerodefaults" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-rotorse.rotor_aeropower">
+<span id="referenced-rotor-aero-power-modules"></span><h2>4.2. Referenced Rotor Aero-Power Modules<a class="headerlink" href="#module-rotorse.rotor_aeropower" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.GeometrySpline">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">GeometrySpline</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#GeometrySpline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.GeometrySpline" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_aeropower.DrivetrainLossesBase">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_aeropower.</code><code class="descname">DrivetrainLossesBase</code><a class="headerlink" href="#rotorse.rotor_aeropower.DrivetrainLossesBase" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.CCBladeGeometry">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">CCBladeGeometry</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#CCBladeGeometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.CCBladeGeometry" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_aeropower.SetupRunVarSpeed">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_aeropower.</code><code class="descname">SetupRunVarSpeed</code><a class="headerlink" href="#rotorse.rotor_aeropower.SetupRunVarSpeed" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.CCBlade">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">CCBlade</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#CCBlade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.CCBlade" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_aeropower.RegulatedPowerCurve">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_aeropower.</code><code class="descname">RegulatedPowerCurve</code><a class="headerlink" href="#rotorse.rotor_aeropower.RegulatedPowerCurve" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.CSMDrivetrain">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">CSMDrivetrain</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#CSMDrivetrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.CSMDrivetrain" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_aeropower.AEP">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_aeropower.</code><code class="descname">AEP</code><a class="headerlink" href="#rotorse.rotor_aeropower.AEP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.WeibullCDF">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">WeibullCDF</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#WeibullCDF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.WeibullCDF" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_aeropower.CSMDrivetrain">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_aeropower.</code><code class="descname">CSMDrivetrain</code><a class="headerlink" href="#rotorse.rotor_aeropower.CSMDrivetrain" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.WeibullWithMeanCDF">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">WeibullWithMeanCDF</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#WeibullWithMeanCDF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.WeibullWithMeanCDF" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_aeropower.OutputsAero">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_aeropower.</code><code class="descname">OutputsAero</code><a class="headerlink" href="#rotorse.rotor_aeropower.OutputsAero" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.RayleighCDF">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">RayleighCDF</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#RayleighCDF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.RayleighCDF" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_aeropower.RotorAeroPower">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_aeropower.</code><code class="descname">RotorAeroPower</code><a class="headerlink" href="#rotorse.rotor_aeropower.RotorAeroPower" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-rotorse.rotor_structure">
+<span id="referenced-rotor-structure-modules"></span><h2>4.3. Referenced Rotor Structure Modules<a class="headerlink" href="#module-rotorse.rotor_structure" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rotorse.rotor_structure.BeamPropertiesBase">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">BeamPropertiesBase</code><a class="headerlink" href="#rotorse.rotor_structure.BeamPropertiesBase" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.RotorAeroVSVPWithCCBlade">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">RotorAeroVSVPWithCCBlade</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#RotorAeroVSVPWithCCBlade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.RotorAeroVSVPWithCCBlade" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_structure.StrucBase">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">StrucBase</code><a class="headerlink" href="#rotorse.rotor_structure.StrucBase" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.RotorAeroVSFPWithCCBlade">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">RotorAeroVSFPWithCCBlade</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#RotorAeroVSFPWithCCBlade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.RotorAeroVSFPWithCCBlade" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_structure.ResizeCompositeSection">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">ResizeCompositeSection</code><a class="headerlink" href="#rotorse.rotor_structure.ResizeCompositeSection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.RotorAeroFSVPWithCCBlade">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">RotorAeroFSVPWithCCBlade</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#RotorAeroFSVPWithCCBlade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.RotorAeroFSVPWithCCBlade" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_structure.PreCompSections">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">PreCompSections</code><a class="headerlink" href="#rotorse.rotor_structure.PreCompSections" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="class">
-<dt id="rotorse.rotoraerodefaults.RotorAeroFSFPWithCCBlade">
-<em class="property">class </em><tt class="descclassname">rotorse.rotoraerodefaults.</tt><tt class="descname">RotorAeroFSFPWithCCBlade</tt><a class="reference internal" href="_modules/rotorse/rotoraerodefaults.html#RotorAeroFSFPWithCCBlade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotoraerodefaults.RotorAeroFSFPWithCCBlade" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor_structure.BladeCurvature">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">BladeCurvature</code><a class="headerlink" href="#rotorse.rotor_structure.BladeCurvature" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.CurveFEM">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">CurveFEM</code><a class="headerlink" href="#rotorse.rotor_structure.CurveFEM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.RotorWithpBEAM">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">RotorWithpBEAM</code><a class="headerlink" href="#rotorse.rotor_structure.RotorWithpBEAM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.DamageLoads">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">DamageLoads</code><a class="headerlink" href="#rotorse.rotor_structure.DamageLoads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.TotalLoads">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">TotalLoads</code><a class="headerlink" href="#rotorse.rotor_structure.TotalLoads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.TipDeflection">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">TipDeflection</code><a class="headerlink" href="#rotorse.rotor_structure.TipDeflection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.BladeDeflection">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">BladeDeflection</code><a class="headerlink" href="#rotorse.rotor_structure.BladeDeflection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.RootMoment">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">RootMoment</code><a class="headerlink" href="#rotorse.rotor_structure.RootMoment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.MassPropertiesExtremeLoads">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">MassPropertiesExtremeLoads</code><a class="headerlink" href="#rotorse.rotor_structure.MassPropertiesExtremeLoads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.GustETM">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">GustETM</code><a class="headerlink" href="#rotorse.rotor_structure.GustETM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.SetupPCModVarSpeed">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">SetupPCModVarSpeed</code><a class="headerlink" href="#rotorse.rotor_structure.SetupPCModVarSpeed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.ConstraintsStructures">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">ConstraintsStructures</code><a class="headerlink" href="#rotorse.rotor_structure.ConstraintsStructures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.OutputsStructures">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">OutputsStructures</code><a class="headerlink" href="#rotorse.rotor_structure.OutputsStructures" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="rotorse.rotor_structure.RotorStructure">
+<em class="property">class </em><code class="descclassname">rotorse.rotor_structure.</code><code class="descname">RotorStructure</code><a class="headerlink" href="#rotorse.rotor_structure.RotorStructure" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="module-rotorse.rotor">
-<span id="referenced-rotor-modules"></span><h2>4.3. Referenced Rotor Modules<a class="headerlink" href="#module-rotorse.rotor" title="Permalink to this headline">¶</a></h2>
+<span id="referenced-rotor-modules"></span><h2>4.4. Referenced Rotor Modules<a class="headerlink" href="#module-rotorse.rotor" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="rotorse.rotor.BeamPropertiesBase">
-<em class="property">class </em><tt class="descclassname">rotorse.rotor.</tt><tt class="descname">BeamPropertiesBase</tt><a class="reference internal" href="_modules/rotorse/rotor.html#BeamPropertiesBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotor.BeamPropertiesBase" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.rotor.RotorSE">
+<em class="property">class </em><code class="descclassname">rotorse.rotor.</code><code class="descname">RotorSE</code><a class="headerlink" href="#rotorse.rotor.RotorSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</div>
+<div class="section" id="module-rotorse.examples.rotorse_example1">
+<span id="referenced-examples"></span><h2>4.5. Referenced Examples<a class="headerlink" href="#module-rotorse.examples.rotorse_example1" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="rotorse.rotor.StrucBase">
-<em class="property">class </em><tt class="descclassname">rotorse.rotor.</tt><tt class="descname">StrucBase</tt><a class="reference internal" href="_modules/rotorse/rotor.html#StrucBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotor.StrucBase" title="Permalink to this definition">¶</a></dt>
+<dt id="rotorse.examples.rotorse_example1.RotorSE_Example1">
+<em class="property">class </em><code class="descclassname">rotorse.examples.rotorse_example1.</code><code class="descname">RotorSE_Example1</code><a class="headerlink" href="#rotorse.examples.rotorse_example1.RotorSE_Example1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
-<dt id="rotorse.rotor.PreCompSections">
-<em class="property">class </em><tt class="descclassname">rotorse.rotor.</tt><tt class="descname">PreCompSections</tt><a class="reference internal" href="_modules/rotorse/rotor.html#PreCompSections"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rotorse.rotor.PreCompSections" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-rotorse.examples.rotorse_example2"></span><dl class="class">
+<dt id="rotorse.examples.rotorse_example2.RotorSE_Example2">
+<em class="property">class </em><code class="descclassname">rotorse.examples.rotorse_example2.</code><code class="descname">RotorSE_Example2</code><a class="headerlink" href="#rotorse.examples.rotorse_example2.RotorSE_Example2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="class">
-<dt id="rotorse.rotor.RotorTS">
-<em class="property">class </em><tt class="descclassname">rotorse.rotor.</tt><tt class="descname">RotorTS</tt><a class="headerlink" href="#rotorse.rotor.RotorTS" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-rotorse.examples.rotorse_example3"></span><dl class="class">
+<dt id="rotorse.examples.rotorse_example3.RotorSE_Example3">
+<em class="property">class </em><code class="descclassname">rotorse.examples.rotorse_example3.</code><code class="descname">RotorSE_Example3</code><a class="headerlink" href="#rotorse.examples.rotorse_example3.RotorSE_Example3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -312,14 +297,16 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">4. Documentation</a><ul>
-<li><a class="reference internal" href="#module-rotorse.rotoraero">4.1. Referenced RotorAero Modules</a></li>
-<li><a class="reference internal" href="#module-rotorse.rotoraerodefaults">4.2. Referenced RotorAeroDefaults Modules</a></li>
-<li><a class="reference internal" href="#module-rotorse.rotor">4.3. Referenced Rotor Modules</a></li>
+<li><a class="reference internal" href="#module-rotorse.rotor_geometry">4.1. Referenced Rotor Geometry Modules</a></li>
+<li><a class="reference internal" href="#module-rotorse.rotor_aeropower">4.2. Referenced Rotor Aero-Power Modules</a></li>
+<li><a class="reference internal" href="#module-rotorse.rotor_structure">4.3. Referenced Rotor Structure Modules</a></li>
+<li><a class="reference internal" href="#module-rotorse.rotor">4.4. Referenced Rotor Modules</a></li>
+<li><a class="reference internal" href="#module-rotorse.examples.rotorse_example1">4.5. Referenced Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -330,29 +317,30 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="theory.html"
                         title="next chapter">5. Theory</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/documentation.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/documentation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -364,13 +352,13 @@
         <li class="right" >
           <a href="tutorial.html" title="3. Tutorial"
              >previous</a> |</li>
-        <li><a href="index.html">RotorSE 0.1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RotorSE 0.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
-    <div class="footer">
-        &copy; Copyright 2014, NREL.
-      Last updated on Oct 07, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014, NREL.
+      Last updated on Apr 08, 2019.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
     </div>
   </body>
 </html>
