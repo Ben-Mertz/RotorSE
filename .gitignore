@@ -99,3 +99,4 @@ __pycache__
 src/rotorse/temp/RotorSE_FAST_BAR_005a
 src/rotorse/*.txt
 src/rotorse/turbine_inputs/BARtest_out.yaml
+src/rotorse/temp
