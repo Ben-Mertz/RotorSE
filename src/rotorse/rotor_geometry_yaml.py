@@ -701,11 +701,11 @@ class ReferenceBlade(object):
                         fa = blade['flap_profiles'][i]['flap_angles'][ind] # Reads out flap angle for naming...note this is important because this is an informal way of passing in the flap angle
                         airfoils[i].flaps[ind] = CCAirfoil(alpha_out, Re, cl[:,i], cd[:,i], cm[:,i],blade['flap_profiles'][i]['coords'][:,0,ind],blade['flap_profiles'][i]['coords'][:,1,ind],"Profile"+str(i)+"_"+str(int(fa))) # bem: naming convention is assumed in CCAirfoil.runXfoil() to get flap deflection angle
                         airfoils[i].flaps[ind].runXfoil(Re) # Run xfoil to get polars (note: assuming default values for AoA_min=-9, AoA_max=25, and AoA_inc=0.5, but those could be specified here)
-                        c=blade['outer_shape_bem']['chord']['values'][i] # Chord length at station [i]
-                        R= blade['outer_shape_bem']['reference_axis']['z']['values'][-1] # Approximate radius of rotor (bem: not sure if there is a better way to get this value)
+                        c=blade['pf']['chord'][i] # Chord length at station [i]
+                        R= blade['pf']['r'][-1] # Approximate radius of rotor (bem: not sure if there is a better way to get this value)
                         tsr = blade['config']['tsr'] # Tip speed ratio 
                         cdmax=1.5 #1.5 is a standard value but may need to be changed...for now just leave it as is
-                        airfoils[i].flaps[ind].AFCorrections(Re,blade['outer_shape_bem']['chord']['grid'][i],c/R, tsr, cdmax) # Correct polars for 3D effects, extrpolate to +-180 deg, and calculate unsteady parameters
+                        airfoils[i].flaps[ind].AFCorrections(Re,blade['pf']['r'][i]/R,c/R, tsr, cdmax) # Correct polars for 3D effects, extrpolate to +-180 deg, and calculate unsteady parameters
                     
             blade['airfoils'] = airfoils
 
