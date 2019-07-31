@@ -602,7 +602,7 @@ class ReferenceBlade(object):
             if 'aerodynamic_control' in blade: # Checks if this section is included in yaml file
                 blade['flap_profiles'].append({}) # Start appending new dictionary items
                 for k in range(len(blade['aerodynamic_control']['te_flaps'])): #for multiple flaps specified in yaml file
-                    if blade['outer_shape_bem']['chord']['grid'][i] >= blade['aerodynamic_control']['te_flaps'][k]['span_start'] and blade['outer_shape_bem']['chord']['grid'][i] <= blade['aerodynamic_control']['te_flaps'][k]['span_end']: # Only create flap geometries where the yaml file specifies there is a flap (Currently going to nearest blade station location)
+                    if (blade['pf']['r'][i]/blade['pf']['r'][-1]) >= blade['aerodynamic_control']['te_flaps'][k]['span_start'] and (blade['pf']['r'][i]/blade['pf']['r'][-1]) <= blade['aerodynamic_control']['te_flaps'][k]['span_end']: # Only create flap geometries where the yaml file specifies there is a flap (Currently going to nearest blade station location)
                         blade['flap_profiles'][i]['flap_angles']=[]
                         blade['flap_profiles'][i]['coords']=np.zeros((len(blade['profile'][:,0,0]),len(blade['profile'][0,:,0]),blade['aerodynamic_control']['te_flaps'][k]['num_delta'])) # initialize to zeros
                         flap_angles = np.linspace(blade['aerodynamic_control']['te_flaps'][k]['delta_max_neg'],blade['aerodynamic_control']['te_flaps'][k]['delta_max_pos'],blade['aerodynamic_control']['te_flaps'][k]['num_delta']) # bem:I am not going to force it to include delta=0.  If this is needed, a more complicated way of getting flap deflections to calculate is needed.
